@@ -1,0 +1,40 @@
+.header-content{
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+.btn{
+    background-color: transparent;
+    border: none;
+    background-color: rgb(216, 34, 74);
+    cursor: pointer;
+}
+
+.cats {
+    /* position: relative; */
+    display: flex;
+    /* justify-content: right; */
+    /* align-items: center; */
+    height: 182%;
+    padding-left: 0;
+    margin-right: 0;
+    width: 100 px;
+}
+
+.random_cats{
+    width: 40%;
+    display: flex;
+}
+
+img{
+    max-width: 700px;
+    height: 30rem;
+}
+
+.container1{
+    background-color: aliceblue;
+    height: 50%;
+    width: 50%;
+    display: flex;
+    position: relative;
+}
