@@ -49,28 +49,33 @@
   </head>
 
   <body>
-    
+    <!-- ======= Header ======= -->
+    <header id="header" class="header d-flex align-items-center fixed-top">
+      <div
+        class="container-fluid d-flex align-items-center justify-content-between"
+      >
+        <a
+          href="index.html"
+          class="logo d-flex align-items-center me-auto me-lg-0"
+        >
+          <!-- Uncomment the line below if you also wish to use an image logo -->
+          <!-- <img src="assets/img/logo.png" alt=""> -->
+          <i class="bi fa-camera"></i>
 
-  <!-- ======= Header ======= -->
-  <header id="header" class="header d-flex align-items-center fixed-top">
-    <div class="container-fluid d-flex align-items-center justify-content-between">
+          <h1>Majestic-Oman-API</h1>
+        </a>
 
-      <a href="index.html" class="logo d-flex align-items-center  me-auto me-lg-0">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.png" alt=""> -->
-        <i class="bi fa-camera"></i>
-
-        <h1>Majestic-Oman-API</h1>
-      </a>
-
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a href="index.html" >Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="API.html">API</a></li>
-          <li><a href="admin_control_panel.html" class="active">Admin Login</a></li>
-        </ul>
-      </nav><!-- .navbar -->
+        <nav id="navbar" class="navbar">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="API.html">API</a></li>
+            <!-- <li><a href="admin_control_panel.html" class="active">Admin Login</a></li> -->
+            <li><a href="#" onclick="openAdminLoginModal()">Admin Login</a></li>
+            <li><a href="#" onclick="logout()">Logout</a></li>
+          </ul>
+        </nav>
+        <!-- .navbar -->
 
         <div class="header-social-links">
           <!-- <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
@@ -80,6 +85,67 @@
         </div>
         <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
         <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+      </div>
+
+      <div
+        id="admin-login-modal"
+        style="
+          display: none;
+          position: fixed;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background-color: #381313;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        "
+      >
+        <div style="padding: 20px; text-align: center">
+          <span
+            style="
+              position: absolute;
+              top: 10px;
+              right: 15px;
+              font-size: 24px;
+              color: #888;
+              cursor: pointer;
+            "
+            onclick="closeAdminLoginModal()"
+            >&times;</span
+          >
+          <h2 style="margin-bottom: 20px; color: #c7b6b66c">Please Login</h2>
+          <form
+            style="display: flex; flex-direction: column; align-items: center"
+          >
+            <label for="admin-password" style="margin-bottom: 10px"
+              >Password:</label
+            >
+            <input
+              type="password"
+              id="admin-password"
+              name="admin-password"
+              style="
+                padding: 8px;
+                margin-bottom: 15px;
+                width: 100%;
+                box-sizing: border-box;
+              "
+              required
+            />
+            <button
+              type="button"
+              onclick="submitAdminCredentials()"
+              style="
+                background-color: #007bff;
+                color: #fff;
+                border: none;
+                padding: 10px 20px;
+                cursor: pointer;
+              "
+            >
+              Login
+            </button>
+          </form>
+        </div>
       </div>
     </header>
     <!-- End Header -->
@@ -211,8 +277,8 @@
                     Update
                   </button>
                   <button class="btn-delete" onclick="deletePhoto(this)">
-                    Delete
-                  </button><i class="fa-solid fa-trash"></i>
+                    Delete</button
+                  ><i class="fa-solid fa-trash"></i>
                 </div>
               </div>
             </div>
@@ -253,37 +319,77 @@
       <div class="line"></div>
     </div>
 
-    <script>//uplouding js
-      document.getElementById("upload-form").addEventListener("submit", function (event) {
-          event.preventDefault(); // Prevents the default form submission
-  
-          var formData = new FormData(this);
-  
-          fetch('your-upload-endpoint', {
-              method: 'POST',
-              body: formData,
-          })
-          .then(response => response.json())
-          .then(data => {
-              console.log('Success:', data);
-              showConfirmationMessage('Photo uploaded successfully!');
-          })
-          .catch((error) => {
-              console.error('Error:', error);
-              showConfirmationMessage('Error uploading photo. Please try again.');
-          });
-      });
-  
-      function showConfirmationMessage(message) {
-          // You can customize how the confirmation message is displayed, for example, using an alert or a modal
-          alert(message);
+    <script>
+      // script.js
+
+      const adminLoginModal = document.getElementById("admin-login-modal");
+
+      function openAdminLoginModal() {
+        adminLoginModal.style.display = "block";
       }
-  </script>  
+
+      function closeAdminLoginModal() {
+        adminLoginModal.style.display = "none";
+      }
+
+      function submitAdminCredentials() {
+        const enteredPassword = document.getElementById("admin-password").value;
+
+        // Replace 'your-correct-password' with the correct password
+        const correctPassword = "your-correct-password";
+
+        if (enteredPassword === correctPassword) {
+          alert("Login successful!");
+          closeAdminLoginModal();
+          // You can redirect or perform additional actions upon successful login
+        } else {
+          alert("Incorrect password. Please try again.");
+        }
+      }
+    </script>
 
     <script>
-      
+      // Function to handle logout
+      function logout() {
+        localStorage.clear();
+        // Redirect to the login page or perform any other desired actions
+        window.location.href = "admin_control_panel.html"; // Replace with your login page URL
+      }
+    </script>
 
+    <script>
+      //uplouding js
+      document
+        .getElementById("upload-form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // Prevents the default form submission
 
+          var formData = new FormData(this);
+
+          fetch("your-upload-endpoint", {
+            method: "POST",
+            body: formData,
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              console.log("Success:", data);
+              showConfirmationMessage("Photo uploaded successfully!");
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+              showConfirmationMessage(
+                "Error uploading photo. Please try again."
+              );
+            });
+        });
+
+      function showConfirmationMessage(message) {
+        // You can customize how the confirmation message is displayed, for example, using an alert or a modal
+        alert(message);
+      }
+    </script>
+
+    <script>
       /*
         <div class="col-lg-6" id="photo-template" style="display: none;">
             <div class="photo-item d-flex justify-content-between">
