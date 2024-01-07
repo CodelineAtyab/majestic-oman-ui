@@ -21,8 +21,8 @@ function openAdminLoginModal() {
 }
 
 function closeAdminLoginModal() {
-  adminLoginModal.style.display = "none";
-}
+    document.getElementById("admin-login-modal").style.display = "none";
+  }
 
 function submitAdminCredentials() {
   var username = "admin";

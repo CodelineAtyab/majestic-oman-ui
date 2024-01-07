@@ -38,6 +38,7 @@
 
     <!-- Template Main CSS File -->
     <link href="assets/css/main.css" rel="stylesheet" />
+    <link href="assets/css/admin_control_login.css" rel="stylesheet" />
     
 
     <!-- =======================================================
@@ -88,66 +89,19 @@
         <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
       </div>
 
-      <div
-        id="admin-login-modal"
-        style="
-          display: none;
-          position: fixed;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          background-color: #381313;
-          box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-        "
-      >
-        <div style="padding: 20px; text-align: center">
-          <span
-            style="
-              position: absolute;
-              top: 10px;
-              right: 15px;
-              font-size: 24px;
-              color: #888;
-              cursor: pointer;
-            "
-            onclick="closeAdminLoginModal()"
-            >&times;</span
-          >
-          <h2 style="margin-bottom: 20px; color: #c7b6b66c">Please Login</h2>
-          <form
-            style="display: flex; flex-direction: column; align-items: center"
-          >
-            <label for="admin-password" style="margin-bottom: 10px"
-              >Password:</label
-            >
-            <input
-              type="password"
-              id="admin-password"
-              name="admin-password"
-              style="
-                padding: 8px;
-                margin-bottom: 15px;
-                width: 100%;
-                box-sizing: border-box;
-              "
-              required
-            />
-            <button
-              type="button"
-              onclick="submitAdminCredentials()"
-              style="
-                background-color: #007bff;
-                color: #fff;
-                border: none;
-                padding: 10px 20px;
-                cursor: pointer;
-              "
-            >
-              Login
-            </button>
+      <div id="admin-login-modal">
+        <div class="modal-content">
+          <span class="close" onclick="closeAdminLoginModal()">&times;</span>
+          <h2>Please Login</h2>
+          <form>
+            <label for="admin-password">Password:</label>
+            <input type="password" id="admin-password" name="admin-password" required/>
+            <button type="button" onclick="submitAdminCredentials()">Login</button>
           </form>
         </div>
       </div>
+
+
     </header>
     <!-- End Header -->
 
