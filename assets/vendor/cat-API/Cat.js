@@ -2,17 +2,21 @@ const url = "https://api.thecatapi.com/v1/images/search";
 const section = document.querySelector(".container");
 const button = document.querySelector(".btn");
 
+section.classList.add("cats");
+
 button.addEventListener("click", getRandomCats);
 
 randomCatPhoto = (json) => {
   let photo = json[0].url;
-  section.classList.add("cats");
 
   let image = document.createElement("img");
   image.style.display="flex";
   image.src = photo;
   image.classList.add("random_cats");
   image.alt = photo;
+  if (section.hasChildNodes()) {
+    section.firstChild.remove();
+  }
   section.appendChild(image);
 };
 

@@ -1,8 +1,34 @@
 .header-content{
+    position: relative;
+    
     align-items: center;
     text-align: center;
+    margin-left: 3%;
+    margin-right: 41%;
+    margin-top: -5%;
+    padding-bottom: 1%;
+    padding-top: 23px;
     justify-content: center;
+    /* border: 2px solid green; */
+    border-radius: 22%;
 }
+
+.header-content h2{
+    z-index: 1;
+    font-size: 467%;}
+
+.header-content h2 span:before{
+    content: "";
+    height: 16%;
+    width: 78%;
+    position: absolute;
+    left: 12%;
+    bottom: 52%;
+    transition: stroke-dashoffset .8s ease-in-out;
+    background-color: black;
+    z-index: -1;
+}
+
 .btn{
     background-color: transparent;
     border: none;
@@ -13,7 +39,7 @@
 .cats {
     /* position: relative; */
     display: flex;
-    /* justify-content: right; */
+    justify-content: center;
     /* align-items: center; */
     height: 182%;
     padding-left: 0;
