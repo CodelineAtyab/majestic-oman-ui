@@ -319,6 +319,19 @@
       <div class="line"></div>
     </div>
 
+    <!-- Include CryptoJS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
+    <script>
+      function hashPassword(password) {
+        // Hash the password using SHA-256
+        var hashedPassword = CryptoJS.SHA256(password).toString(
+          CryptoJS.enc.Hex
+        );
+
+        return hashedPassword;
+      }
+    </script>
+
     <script>
       // script.js
 
@@ -333,18 +346,37 @@
       }
 
       function submitAdminCredentials() {
+        var username = "admin";
         const enteredPassword = document.getElementById("admin-password").value;
+        const hashedPassword = hashPassword(enteredPassword);
 
-        // Replace 'your-correct-password' with the correct password
-        const correctPassword = "your-correct-password";
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
 
-        if (enteredPassword === correctPassword) {
-          alert("Login successful!");
-          closeAdminLoginModal();
-          // You can redirect or perform additional actions upon successful login
-        } else {
-          alert("Incorrect password. Please try again.");
-        }
+        var raw = JSON.stringify({
+          username: username,
+          password: hashedPassword,
+        });
+
+        var requestOptions = {
+          //mode: 'no-cors',
+          method: "POST",
+          headers: myHeaders,
+          body: raw,
+          redirect: "follow",
+        };
+
+        fetch("http://localhost:8080/api/v1/login", requestOptions)
+          .then((response) => {
+            if (response.ok) {
+              alert("Login successful!");
+              closeAdminLoginModal();
+              location.reload();
+            } else {
+              throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+          })
+          .catch((error) => console.log("error", error));
       }
     </script>
 
