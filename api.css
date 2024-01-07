@@ -1,5 +1,8 @@
 .header-content{
+    position: relative;
+    
     align-items: center;
+
     /* position: absolute; */
     text-align: left;
     /* justify-content: center; */
@@ -27,7 +30,25 @@ position: absolute;
 z-index: -1;
 
 bottom: 491px;
+
 }
+
+.header-content h2{
+    z-index: 1;
+    font-size: 467%;}
+
+.header-content h2 span:before{
+    content: "";
+    height: 16%;
+    width: 78%;
+    position: absolute;
+    left: 12%;
+    bottom: 52%;
+    transition: stroke-dashoffset .8s ease-in-out;
+    background-color: black;
+    z-index: -1;
+}
+
 .btn{
     background-color: transparent;
     border: none;
@@ -38,6 +59,7 @@ bottom: 491px;
 .cats {
     position: absolute;
     display: flex;
+
     /* justify-content: right; */
     align-items: center;
     height: 101%;
@@ -49,6 +71,8 @@ bottom: 491px;
     top: 27%;
     padding-top: -26%;
     border-radius: 100;
+
+
 }
 
 .random_cats{
