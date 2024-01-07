@@ -1,7 +1,32 @@
 .header-content{
     align-items: center;
-    text-align: center;
-    justify-content: center;
+    /* position: absolute; */
+    text-align: left;
+    /* justify-content: center; */
+    padding-left: 63px;
+    padding-right: 49%;
+    /* text-align-last: start; */
+    display: inline-block;
+}
+.header-content h2{
+    
+font-size: 448%;
+}
+.header-content h2:before{
+
+content: "";
+
+background-color: black;
+
+height: 18px;
+
+width: 583px;
+
+position: absolute;
+
+z-index: -1;
+
+bottom: 491px;
 }
 .btn{
     background-color: transparent;
@@ -11,14 +36,19 @@
 }
 
 .cats {
-    /* position: relative; */
+    position: absolute;
     display: flex;
     /* justify-content: right; */
-    /* align-items: center; */
-    height: 182%;
-    padding-left: 0;
-    margin-right: 0;
-    width: 100 px;
+    align-items: center;
+    height: 101%;
+    padding-right: -5%;
+    margin-top: -42%;
+    width: 252%;
+    justify-content: center;
+    right: -49%;
+    top: 27%;
+    padding-top: -26%;
+    border-radius: 100;
 }
 
 .random_cats{

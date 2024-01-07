@@ -13,6 +13,8 @@ randomCatPhoto = (json) => {
   image.src = photo;
   image.classList.add("random_cats");
   image.alt = photo;
+  image.style.border="3px solid black";
+  image.style.borderRadius="200px 100px 200px 100px";
   section.appendChild(image);
 };
 
