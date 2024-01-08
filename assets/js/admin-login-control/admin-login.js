@@ -9,7 +9,7 @@ function hashPassword(password) {
 
 
 // script.js
-const serverAddress = "omanmajesticapi.servepics.com";
+const serverAddress = `${window.location.hostname}`;
 const serverPort = "8080";
 const loginURL =`http://${serverAddress}:${serverPort}/api/v1/login`;
 
@@ -57,7 +57,10 @@ function submitAdminCredentials() {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
     })
-    .catch((error) => console.log("error", error));
+    .catch((error) => {
+      console.log("error", error);
+      alert("Unable to Login!");
+    });
 }
 
 
