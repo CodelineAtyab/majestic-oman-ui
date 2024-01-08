@@ -1,7 +1,12 @@
 const hostName = window.location.hostname;
 const hostPort = 8080;
-const getAllPhotosJsonBaseUrl = "http://omanmajesticapi.servepics.com:8080/api/v1/PicturesContent/data";
-const getSpecificPhotoBaseUrl = `http://omanmajesticapi.servepics.com:8080/api/v1/PicturesContent`
+const getSpecificPhotoBaseUrl = `http://omanmajesticapi.servepics.com:8080/api/v1/picturesContent`
+const getAllPhotosJsonBaseUrl = `${getSpecificPhotoBaseUrl}/data`;
+
+// localStorage.getItem("LogInUsername");
+// localStorage.getItem("LogInPassword");
+
+
 
 /*
 Render existing Photo's list view.
@@ -37,15 +42,19 @@ const uploadSelectedPhoto = (fileToUpload) => {
       const formData = new FormData();
       formData.append('file', fileToUpload);
 
+      var reqHeaders = new Headers();
+      reqHeaders.append("Authorization", `Basic ${btoa(`${localStorage.getItem("LogInUsername")}:${localStorage.getItem("LogInPassword")}`)}`);
+
       fetch(getSpecificPhotoBaseUrl, {
           method: 'POST',
+          headers: reqHeaders,
           body: formData,
       })
       .then(response => response.text())
       .then(data => {
         console.log(data);
-        // TODO: Update the API and use the ID in response
-        // addPicRecordRowInDiv(`${getSpecificPhotoBaseUrl}/${currPicObj.picID}`);
+        
+        addPicRecordRowInDiv(`${getSpecificPhotoBaseUrl}/${data}`);
         alert("Photo Uploaded without a title and description.");
       })
       .catch(error => {
