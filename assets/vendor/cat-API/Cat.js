@@ -1,4 +1,4 @@
-const url = "http://omanmajesticapi.servepics.com:8080/api/v1/PicturesContent/random";
+const url = "http://omanmajesticapi.servepics.com:8080/api/v1/picturesContent/random";
 const section = document.querySelector(".container");
 const button = document.querySelector(".btn");
 
