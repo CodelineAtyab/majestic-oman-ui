@@ -23,31 +23,20 @@ background-color: black;
 
 height: 18px;
 
-width: 583px;
+width: 615px;
 
 position: absolute;
 
 z-index: -1;
 
-bottom: 491px;
-
+bottom: 327px;
 }
 
 .header-content h2{
     z-index: 1;
     font-size: 467%;}
 
-.header-content h2 span:before{
-    content: "";
-    height: 16%;
-    width: 78%;
-    position: absolute;
-    left: 12%;
-    bottom: 52%;
-    transition: stroke-dashoffset .8s ease-in-out;
-    background-color: black;
-    z-index: -1;
-}
+
 
 .btn{
     background-color: transparent;
