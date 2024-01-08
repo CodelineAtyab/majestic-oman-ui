@@ -16,7 +16,8 @@ randomCatPhoto = (json) => {
   image.alt = photo;
 
   image.style.border="3px solid black";
-  image.style.borderRadius="200px 100px 200px 100px";
+  image.style.borderRadius="20px 20px 20px 20px";
+  image.style.boxShadow="20px 20px 5px #343a3f";
   section.appendChild(image);
 };
 
