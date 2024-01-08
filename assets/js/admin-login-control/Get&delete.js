@@ -1,6 +1,11 @@
+const hostName = window.location.hostname;
+const hostPort = 8080;
 const getAllPhotosJsonBaseUrl = "http://omanmajesticapi.servepics.com:8080/api/v1/PicturesContent/data";
 const getSpecificPhotoBaseUrl = `http://omanmajesticapi.servepics.com:8080/api/v1/PicturesContent`
 
+/*
+Render existing Photo's list view.
+*/
 const getAndRenderAllPhotoList = () => {
   fetch(`${getAllPhotosJsonBaseUrl}`)
   .then((response) => {
@@ -14,8 +19,35 @@ const getAndRenderAllPhotoList = () => {
     })
   })
 };
-
 getAndRenderAllPhotoList();
+
+/*
+Handle the Photo uploads through upload form.
+*/
+document.getElementById("upload-form").addEventListener("submit", (event) => {
+  event.preventDefault();
+  const photoFile = document.getElementById("photoInput").files[0];
+  uploadSelectedPhoto(photoFile);
+});
+
+const uploadSelectedPhoto = (fileToUpload) => {
+  if (fileToUpload) {
+      const formData = new FormData();
+      formData.append('file', fileToUpload);
+
+      fetch(getSpecificPhotoBaseUrl, {
+          method: 'POST',
+          body: formData,
+      })
+      .then(response => response.text())
+      .then(data => {
+        console.log(data);
+        // TODO: Update the API and use the ID in response
+        // addPicRecordRowInDiv(`${getSpecificPhotoBaseUrl}/${currPicObj.picID}`);
+      })
+      .catch(error => console.error('Error:', error));
+  }
+};
 
 const addPicRecordRowInDiv = (imageUrl) => {
   const photoInfoContDiv = document.getElementById("photo_info_container_div");
@@ -57,10 +89,6 @@ const addPicRecordRowInDiv = (imageUrl) => {
   outerContainerDiv.appendChild(innerContainerDiv);
   photoInfoContDiv.append(outerContainerDiv);
 }
-
-
-
-// upload-form
 
 // const respJson = ["profile-img.jpg", "apple-touch-icon.png"];
 
