@@ -9,7 +9,8 @@ function hashPassword(password) {
 
 
 // script.js
-const serverAddress = `${window.location.hostname}`;
+// const serverAddress = `${window.location.hostname}`;
+const serverAddress = `omanmajesticapi.servepics.com`;
 const serverPort = "8080";
 const loginURL =`http://${serverAddress}:${serverPort}/api/v1/login`;
 
@@ -49,8 +50,8 @@ function submitAdminCredentials() {
     .then((response) => {
       if (response.ok) {
         alert("Login successful!");
-        localStorage.setItem("LogInUsername",username);
-        localStorage.setItem("LogInPassword",hashedPassword);
+        localStorage.setItem("LogInUsername", username);
+        localStorage.setItem("LogInPassword", hashedPassword);
         closeAdminLoginModal();
         location.reload();
       } else {

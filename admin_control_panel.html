@@ -101,7 +101,7 @@
                 delete all gallery photos for majestic oman api website .
               </p>
 
-              <p class="cta-btn">Uplouding photo</p>
+              <!-- <p class="cta-btn">Upload Photo</p> -->
             </div>
           </div>
         </div>
@@ -116,17 +116,16 @@
               <div class="col-xl-3 col-md-6 d-flex">
                 <div class="service-item position-relative">
                   <i class="bi bi-activity"></i>
-                  <h4>choosing photo</h4>
-                  <label for="photoInput" class="form-label"
-                    >Choose a Photo:</label
-                  >
+                  <h4>Upload a Photo</h4>
+                  <label for="photoInput" class="form-label">
+                    Supported file format is: .jpg
+                  </label>
                   <input
                     type="file"
                     class="form-control"
                     id="photoInput"
                     name="photo"
                     accept="image/*"
-                    required
                   />
                 </div>
               </div>
@@ -134,14 +133,13 @@
               <div class="col-xl-3 col-md-6 d-flex">
                 <div class="service-item position-relative">
                   <i class="bi bi-bounding-box-circles"></i>
-                  <h4>Write the name for photo</h4>
-                  <label for="photoName" class="form-label">Photo Name:</label>
+                  <h4>Title of Photo</h4>
+                  <label for="photoName" class="form-label">Write the title of the photo:</label>
                   <input
                     type="text"
                     class="form-control"
                     id="photoName"
                     name="photoName"
-                    required
                   />
                 </div>
               </div>
@@ -149,16 +147,15 @@
               <div class="col-xl-3 col-md-6 d-flex">
                 <div class="service-item position-relative">
                   <i class="bi bi-calendar4-week"></i>
-                  <h4>Give description for photo</h4>
-                  <label for="photoDescription" class="form-label"
-                    >Photo Description:</label
-                  >
+                  <h4>Description of Photo</h4>
+                  <label for="photoDescription" class="form-label">
+                    Write the description of the photo:
+                  </label>
                   <textarea
                     class="form-control"
                     id="photoDescription"
                     name="photoDescription"
                     rows="3"
-                    required
                   ></textarea>
                 </div>
               </div>
@@ -166,13 +163,12 @@
               <div class="col-xl-3 col-md-6 d-flex">
                 <div class="service-item position-relative">
                   <i class="bi bi-broadcast"></i>
-                  <h4>choosing the type photo</h4>
-                  <label for="photoType" class="form-label">Photo Type:</label>
+                  <h4>Type of Photo</h4>
+                  <label for="photoType" class="form-label">Select the type of the photo:</label>
                   <select
                     class="form-select"
                     id="photoType"
                     name="photoType"
-                    required
                   >
                     <option value="city">City</option>
                     <option value="mountain">Mountain</option>
@@ -183,7 +179,7 @@
               </div>
               <!-- End Service Item -->
 
-              <button type="submit" class="btn btn-primary">Upload</button>
+              <button type="submit" class="btn btn-primary">Save</button>
             </div>
           </form>
         </div>
@@ -203,7 +199,7 @@
             id="photo-list"
           >
             <!-- Photo Item Template -->
-            <div class="col-lg-6" id="photo-template">
+            <!-- <div class="col-lg-6" id="photo-template">
               <div class="photo-item d-flex justify-content-between">
                 <img
                   src="https://cdn2.thecatapi.com/images/494.gif"
@@ -220,7 +216,7 @@
                   ><i class="fa-solid fa-trash"></i>
                 </div>
               </div>
-            </div>
+            </div> -->
             <!-- End Photo Item Template -->
           </div>
         </div>
@@ -257,9 +253,8 @@
     <!-- Include CryptoJS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
     <script src="assets/js/admin-login-control/admin-login.js"></script>
-    <script src="assets/js/admin-login-control/uplouding-photo.js"></script>
 
-    <script src="assets/js/admin-login-control/Get&delete.js"></script>
+    <script src="assets/js/admin-login-control/getAndDelete.js"></script>
 
     <!-- Vendor JS Files -->
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
