@@ -12,11 +12,13 @@ const getAndRenderAllPhotoList = () => {
     return response.json();
   })
   .then((jsonResponse) => {
-    console.log(jsonResponse);
     jsonResponse.forEach((currPicObj) => {
       console.log(currPicObj.picID);
       addPicRecordRowInDiv(`${getSpecificPhotoBaseUrl}/${currPicObj.picID}`);
     })
+  }).catch(error => {
+    console.error('Error:', error);
+    alert("Unable to get all of the photos.")
   })
 };
 getAndRenderAllPhotoList();
@@ -44,11 +46,18 @@ const uploadSelectedPhoto = (fileToUpload) => {
         console.log(data);
         // TODO: Update the API and use the ID in response
         // addPicRecordRowInDiv(`${getSpecificPhotoBaseUrl}/${currPicObj.picID}`);
+        alert("Photo Uploaded without a title and description.");
       })
-      .catch(error => console.error('Error:', error));
+      .catch(error => {
+        console.error('Error:', error);
+        alert("Unable to upload the photo.")
+      });
   }
 };
 
+/*
+Utility functions.
+*/
 const addPicRecordRowInDiv = (imageUrl) => {
   const photoInfoContDiv = document.getElementById("photo_info_container_div");
   const outerContainerDiv = document.createElement("div");
