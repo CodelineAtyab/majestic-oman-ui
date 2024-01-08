@@ -9,7 +9,7 @@ function hashPassword(password) {
 
 
 // script.js
-const serverAddress = "localhost";
+const serverAddress = "omanmajesticapi.servepics.com";
 const serverPort = "8080";
 const loginURL =`http://${serverAddress}:${serverPort}/api/v1/login`;
 
