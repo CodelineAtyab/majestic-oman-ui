@@ -52,3 +52,23 @@
     padding: 10px 20px;
     cursor: pointer;
   }
+
+  .photo-item{
+    display: flex;
+    flex-direction: row;
+    padding-right: 14%;
+  }
+
+  .photo-details{
+    display: flex;
+    flex-direction: row-reverse;
+  }
+
+  .photo-details1{
+    position: relative;
+    margin-left: 0%;
+    right: -11%;
+  }
+
+
+  

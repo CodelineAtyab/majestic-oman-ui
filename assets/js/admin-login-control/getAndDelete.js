@@ -77,11 +77,13 @@ const addPicRecordRowInDiv = (imageUrl) => {
     "photo-item d-flex justify-content-between";
 
   const imgElem = document.createElement("img");
+  
   imgElem.src = imageUrl;
   imgElem.alt = "Photo";
   imgElem.className = "photo-thumbnail";
   imgElem.width = "65";
   imgElem.height = "65";
+  
 
   const actionContainerDiv = document.createElement("div");
   actionContainerDiv.className = "photo-actions";
