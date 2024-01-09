@@ -3,7 +3,6 @@
 const hostPort = 8080;
 const getSpecificPhotoBaseUrl = `http://localhost:8080/api/v1/picturesContent`;
 const getAllPhotosJsonBaseUrl = `${getSpecificPhotoBaseUrl}/data`;
-const deletephotoUrl = "http://localhost:8080/api/v1/picturesContent/2";
 
 // localStorage.getItem("LogInUsername");
 // localStorage.getItem("LogInPassword");
@@ -182,7 +181,11 @@ const deletePhoto = (picId) => {
   const myHeaders = new Headers();
   myHeaders.append(
     "Authorization",
-    "Basic YWRtaW46MDRkMzliMmZiNzUwNWM0NmU5M2IwNGU5YjU5ZWMzODYwODBiMmFhZmU1Mjg0MjBkOTg5MjkyMTc2MDZhY2U1Nw=="
+    `Basic ${btoa(
+      `${localStorage.getItem("LogInUsername")}:${localStorage.getItem(
+        "LogInPassword"
+      )}`
+    )}`
   );
   myHeaders.append("Cookie", "JSESSIONID=227D78B131038368298C107221758AAC");
 
@@ -192,12 +195,11 @@ const deletePhoto = (picId) => {
     redirect: "follow",
   };
 
-  fetch(`http://localhost:8080/api/v1/picturesContent/${picId}`, requestOptions)
+  fetch(`${getSpecificPhotoBaseUrl}/${picId}`, requestOptions)
   .then(response => {
     if (response.ok) {
-      // Photo deleted successfully, you may want to remove the corresponding UI element
-      // Update the UI or reload the photo list
       console.log("Photo deleted successfully");
+      const photoInfoContDiv = document.getElementById("photo_info_container_div");
       // Add logic to update UI or reload photo list
     } else {
       console.error("Error deleting photo");
