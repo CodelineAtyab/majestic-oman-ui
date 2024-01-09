@@ -1,11 +1,5 @@
-//const serverAddress = `${window.location.hostname}`;
-//const serverAddress = `omanmajesticapi.servepics.com`;
-const hostPort = 8080;
-const getSpecificPhotoBaseUrl = `http://localhost:8080/api/v1/picturesContent`;
+const getSpecificPhotoBaseUrl = `http://${serverAddress}:${serverPort}/api/v1/picturesContent`;
 const getAllPhotosJsonBaseUrl = `${getSpecificPhotoBaseUrl}/data`;
-
-// localStorage.getItem("LogInUsername");
-// localStorage.getItem("LogInPassword");
 
 /*
 Render existing Photo's list view.
@@ -18,7 +12,7 @@ const getAndRenderAllPhotoList = () => {
     .then((jsonResponse) => {
       jsonResponse.forEach((currPicObj) => {
         console.log(currPicObj.picID);
-        addPicRecordRowInDiv(`${getSpecificPhotoBaseUrl}/${currPicObj.picID}`,currPicObj.picID);//added to picid to use it for delete and update
+        addPicRecordRowInDiv(`${getSpecificPhotoBaseUrl}/${currPicObj.picID}`, currPicObj.picID);
       });
     })
     .catch((error) => {
@@ -61,7 +55,7 @@ const uploadSelectedPhoto = (fileToUpload) => {
       .then((data) => {
         console.log(data);
 
-        addPicRecordRowInDiv(`${getSpecificPhotoBaseUrl}/${data}`);
+        addPicRecordRowInDiv(`${getSpecificPhotoBaseUrl}/${data}`, data);
         alert("Photo Uploaded without a title and description.");
       })
       .catch((error) => {
@@ -75,10 +69,12 @@ const uploadSelectedPhoto = (fileToUpload) => {
 Utility functions.
 */
 //added picid to pic the id of photo to delete it
-const addPicRecordRowInDiv = (imageUrl, picId) => {
+const addPicRecordRowInDiv = (imageUrl, picID) => {
+  // const imageUrl = `${getSpecificPhotoBaseUrl}/${currPicObj.picID}`
   const photoInfoContDiv = document.getElementById("photo_info_container_div");
   const outerContainerDiv = document.createElement("div");
   outerContainerDiv.className = "col-lg-6";
+  outerContainerDiv.id = picID;
 
   const innerContainerDiv = document.createElement("div");
   innerContainerDiv.className = "photo-item d-flex justify-content-between";
@@ -93,19 +89,22 @@ const addPicRecordRowInDiv = (imageUrl, picId) => {
   const actionContainerDiv = document.createElement("div");
   actionContainerDiv.className = "photo-actions";
 
-  const updateButton = document.createElement("button");
-  updateButton.className = "btn-update";
-  updateButton.onclick = () => {
-    console.log("Update Clicked!");
-  };
-  updateButton.innerText = "Update";
+  // const updateButton = document.createElement("button");
+  // updateButton.className = "btn-update";
+  // updateButton.onclick = () => {
+  //   console.log("Update Clicked!");
+  // };
+  // updateButton.innerText = "Update";
 
   const delButton = document.createElement("button");
   delButton.className = "btn-delete";
-  delButton.onclick = () => confirmDeletePhoto(picId);
+
+  console.log(`Delete button has image id: ${picID}`);
+  delButton.onclick = () => confirmDeletePhoto(picID);
+  
   delButton.innerText = "Delete";
 
-  actionContainerDiv.appendChild(updateButton);
+  // actionContainerDiv.appendChild(updateButton);
   actionContainerDiv.appendChild(delButton);
 
   innerContainerDiv.appendChild(imgElem);
@@ -187,22 +186,23 @@ const deletePhoto = (picId) => {
       )}`
     )}`
   );
-  myHeaders.append("Cookie", "JSESSIONID=227D78B131038368298C107221758AAC");
+  // myHeaders.append("Cookie", "JSESSIONID=227D78B131038368298C107221758AAC");
 
   const requestOptions = {
     method: "DELETE",
-    headers: myHeaders,
-    redirect: "follow",
+    headers: myHeaders
   };
 
   fetch(`${getSpecificPhotoBaseUrl}/${picId}`, requestOptions)
   .then(response => {
     if (response.ok) {
       console.log("Photo deleted successfully");
+      alert("Deleted Successfully!");
       const photoInfoContDiv = document.getElementById("photo_info_container_div");
-      // Add logic to update UI or reload photo list
+      photoInfoContDiv.childNodes.forEach(currNode => {if(currNode.id == picId) photoInfoContDiv.removeChild(currNode);})
     } else {
       console.error("Error deleting photo");
+      alert("Unable to Delete the photo!");
     }
   })
     .catch((error) => console.log("error", error));

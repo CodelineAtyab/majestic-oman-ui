@@ -1,3 +1,7 @@
+const serverAddress = `${window.location.hostname}`;
+const serverPort = "8080";
+const loginURL =`http://${serverAddress}:${serverPort}/api/v1/login`;
+
 function hashPassword(password) {
     // Hash the password using SHA-256
     var hashedPassword = CryptoJS.SHA256(password).toString(
@@ -6,14 +10,6 @@ function hashPassword(password) {
 
     return hashedPassword;
   }
-
-
-// script.js
-const serverAddress = `${window.location.hostname}`;
-//const serverAddress = `omanmajesticapi.servepics.com`;
-const serverPort = "8080";
-const loginURL =`http://${serverAddress}:${serverPort}/api/v1/login`;
-
 
 const adminLoginModal = document.getElementById("admin-login-modal");
 
